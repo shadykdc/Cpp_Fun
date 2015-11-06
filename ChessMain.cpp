@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#include "ChessBoard.hpp"
+#include "ChessBoard.h"
 
 int main() {
 
