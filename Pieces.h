@@ -9,12 +9,10 @@ using namespace std;
 
 class Piece
 {
-private:
+protected:
 	char color;
 	string position;
 public:
-	Piece();
-
 	virtual bool move();
 	/* attempts to move a piece to a position */
 };
@@ -22,7 +20,7 @@ public:
 class King: public Piece
 {
 public:
-	King();
+	King(char _color);
 	
 	bool move(std::string position);
 	/*	returns true if the king can move to position
@@ -42,7 +40,7 @@ public:
 class Queen: public Piece
 {
 public:
-	Queen();
+	Queen(char _color);
 	
 	bool move(std::string position);
 	/*	returns true if the queen can move to position
@@ -56,7 +54,7 @@ public:
 class Rook: public Piece
 {
 public:
-	Rook();
+	Rook(char _color);
 	
 	bool move(std::string position);
 	/*	returns true if the rook can move to position
@@ -70,7 +68,7 @@ public:
 class Knight: public Piece
 {
 public:
-	Knight();
+	Knight(char _color);
 	
 	bool move(std::string position);
 	/*	returns true if the knight can move to position
@@ -83,7 +81,7 @@ public:
 class Bishop: public Piece
 {
 public:
-	Bishop();
+	Bishop(char _color);
 	
 	bool move(std::string position);
 	/*	returns true if the bishop can move to position
@@ -99,7 +97,7 @@ class Pawn: public Piece
 private:
 	int moves;
 public:
-	Pawn();
+	Pawn(char _color);
 	
 	bool move(std::string position);
 	/*	returns true if the pawn can move to position

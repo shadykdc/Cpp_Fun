@@ -5,13 +5,14 @@
 #include <iostream>
 #include <string>
 #include <map>
-#include "Pieces.h"
+
+class Piece;
 
 class ChessBoard
 {
 private:
 	char turn;
-	std::map <std::string, Piece*> board;
+	std::map <std::string, Piece *> board;
 public:
 	ChessBoard();
 	/*	initializer */

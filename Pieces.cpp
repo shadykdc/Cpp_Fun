@@ -5,45 +5,46 @@
 
 using namespace std;
 
-Piece::Piece()
+King::King(char _color)
 {
-	//initialize?
-}
-
-King::King()
-{
-	//initialize?
+	color = _color;
+//	position = _position;
 }
 
 
-Queen::Queen()
+Queen::Queen(char _color)
 {
-	//initialize?
+	color = _color;
+//	position = _position;
 }
 
 
-Rook::Rook()
+Rook::Rook(char _color)
 {
-	//initialize?
+	color = _color;
+//	position = _position;
 }
 
 
-Knight::Knight()
+Knight::Knight(char _color)
 {
-	//initialize?
+	color = _color;
+//	position = _position;
 }
 
-Bishop::Bishop()
+Bishop::Bishop(char _color)
 {
-	//initialize?
+	color = _color;
+//	position = _position;
 }
 
-Pawn::Pawn()
+Pawn::Pawn(char _color)
 {
-	//initialize?
+	color = _color;
+//	position = _position;
 }
 
-virtual bool Piece::move()
+bool Piece::move()
 {
 	return true;
 }
