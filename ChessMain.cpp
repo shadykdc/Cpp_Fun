@@ -1,14 +1,22 @@
+//	Kathryn Shea
+//	December 14, 2015
+//	Assessed Exercise #3, C++
+//	chess: ChessMain.cpp
+
 #include <iostream>
+#include <string>
+#include "ChessBoard.h"
+#include "Pieces.h"
 
 using namespace std;
 
-#include "ChessBoard.h"
-
 int main() {
 
-    cout << "===========================" << endl;
-    cout << "Testing the Chess Engine" << endl;
-    cout << "===========================" << endl;
+	// create board
+	
+    cout << "============================" << endl;
+    cout << "  Testing the Chess Engine  " << endl;
+    cout << "============================" << endl;
     cout << endl;
 
     ChessBoard cb;
@@ -27,7 +35,7 @@ int main() {
     cout << endl;
 
     cout << "===========================" << endl;
-    cout << "Alekhine vs. Vasic (1931)" << endl;
+    cout << " Alekhine vs. Vasic (1931) " << endl;
     cout << "===========================" << endl;
     cout << endl;
 

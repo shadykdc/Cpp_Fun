@@ -1,5 +1,4 @@
 // chess: Pieces.cpp
-#include "ChessBoard.h"
 #include "Pieces.h"
 #include <string>
 
@@ -8,40 +7,40 @@ using namespace std;
 King::King(char _color)
 {
 	color = _color;
-//	position = _position;
+	name = "King";
 }
 
 
 Queen::Queen(char _color)
 {
 	color = _color;
-//	position = _position;
+	name = "Queen";
 }
 
 
 Rook::Rook(char _color)
 {
 	color = _color;
-//	position = _position;
+	name = "Rook";
 }
 
 
 Knight::Knight(char _color)
 {
 	color = _color;
-//	position = _position;
+	name = "Knight";
 }
 
 Bishop::Bishop(char _color)
 {
 	color = _color;
-//	position = _position;
+	name = "Bishop";
 }
 
 Pawn::Pawn(char _color)
 {
 	color = _color;
-//	position = _position;
+	name = "Pawn";
 }
 
 bool Piece::move()
@@ -87,4 +86,15 @@ bool Bishop::move(string position)
 bool Pawn::move(string position)
 {
 	return true;
+}
+
+char Piece::get_color()
+{
+	return color;
+}
+
+
+string Piece::get_name()
+{
+	return name;
 }

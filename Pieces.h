@@ -12,9 +12,16 @@ class Piece
 protected:
 	char color;
 	string position;
+	string name;
 public:
 	virtual bool move();
 	/* attempts to move a piece to a position */
+	
+	std::string get_name();
+	/*	returns the name of the piece (Bishop, Rook, etc.) */
+	
+	char get_color();
+	/*	returns the color of the piece; 'w' = white, 'b' = black */
 };
 
 class King: public Piece
@@ -28,7 +35,6 @@ public:
 			that position is occupied by another piece of the same color
 			that position would put the king in check
 			that position is not adjacent to the king's current position */
-	/* castling */
 	
 	bool in_check();
 	/* returns true when the king is being attacked and he can move out of it */
