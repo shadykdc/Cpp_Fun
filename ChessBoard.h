@@ -12,6 +12,7 @@ class ChessBoard
 {
 private:
 	std::string turn;
+	std::string opponent;
 	std::map <std::/*const*/string, Piece *> board;
 public:
 	ChessBoard();
@@ -27,19 +28,12 @@ public:
 			checks if the other player is now in a stalemate 
 			checks if the other player is now in check
 			checks if the other player is now checkmated */
-	
-	bool empty(std::string position);
-	/*	returns true if the position on the board is empty,
-		returns false if the position on the board is occupied */
 		
 	void change_turn();
 	/*	changes whose turn it is */
 		
 	std::string get_turn();
 	/*	returns the color of the person whose turn it is */
-	
-	void remove(std::string position);
-	/*	removes a piece at position from the board (when it is captured). */
 };
 
 #endif

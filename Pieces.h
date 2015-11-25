@@ -14,7 +14,8 @@ protected:
 	string position;
 	string name;
 public:
-	virtual bool move();
+	virtual bool move(int rank_src, int file_src, int rank_dest, int file_dest,
+	std::map<string, Piece *> &board);
 	/* attempts to move a piece to a position */
 	
 	std::string get_name();
@@ -29,18 +30,12 @@ class King: public Piece
 public:
 	King(char _color);
 	
-	bool move(std::string position);
+	bool move(int rank_src, int file_src, int rank_dest, int file_dest,
+	std::map<string, Piece *> &board);
 	/*	returns true if the king can move to position
 		returns false if:
-			that position is occupied by another piece of the same color
 			that position would put the king in check
 			that position is not adjacent to the king's current position */
-	
-	bool in_check();
-	/* returns true when the king is being attacked and he can move out of it */
-	
-	bool mate();
-	/* returns true when the king is being attacked and he can't move */
 };
 
 class Queen: public Piece
@@ -48,10 +43,10 @@ class Queen: public Piece
 public:
 	Queen(char _color);
 	
-	bool move(std::string position);
+	bool move(int rank_src, int file_src, int rank_dest, int file_dest,
+	std::map<string, Piece *> &board);
 	/*	returns true if the queen can move to position
 		returns false if:
-			that position is occupied by another piece of the same color
 			moving the queen would result in putting the king in check
 			that position is not along the queen's diagonals, vert, or horiz
 			there is another piece between the queen and the position */
@@ -62,10 +57,10 @@ class Rook: public Piece
 public:
 	Rook(char _color);
 	
-	bool move(std::string position);
+	bool move(int rank_src, int file_src, int rank_dest, int file_dest,
+	std::map<string, Piece *> &board);
 	/*	returns true if the rook can move to position
 		returns false if:
-			that position is occupied by another piece of the same color
 			moving the rook would result in putting the king in check
 			that position is not along the rook's vertical or horizontal
 			there is another piece between the rook and the position */
@@ -76,10 +71,10 @@ class Knight: public Piece
 public:
 	Knight(char _color);
 	
-	bool move(std::string position);
+	bool move(int rank_src, int file_src, int rank_dest, int file_dest,
+	std::map<string, Piece *> &board);
 	/*	returns true if the knight can move to position
 		returns false if:
-			that position is occupied by another piece of the same color
 			moving the knight would result in putting the king in check
 			that position is not an L away from the knight's position */
 };
@@ -89,10 +84,10 @@ class Bishop: public Piece
 public:
 	Bishop(char _color);
 	
-	bool move(std::string position);
+	bool move(int rank_src, int file_src, int rank_dest, int file_dest,
+	std::map<string, Piece *> &board);
 	/*	returns true if the bishop can move to position
 		returns false if:
-			that position is occupied by another piece of the same color
 			moving the bishop would result in putting the king in check
 			that position is not along the bishop's diagonals
 			there is another piece between the bishop and the position */
@@ -105,7 +100,8 @@ private:
 public:
 	Pawn(char _color);
 	
-	bool move(std::string position);
+	bool move(int rank_src, int file_src, int rank_dest, int file_dest,
+	std::map<string, Piece *> &board);
 	/*	returns true if the pawn can move to position
 		returns false if:
 			moving the pawn would result in putting the king in check

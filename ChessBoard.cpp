@@ -11,6 +11,7 @@ ChessBoard::ChessBoard()
 {
 	cout  << endl << "A new chess game is started!" << endl;
 	turn = "White";
+	opponent = "Black";
 	
 	/* insert the white pieces to their starting positions */
 	board["A1"] = new Rook('w');
@@ -160,7 +161,7 @@ void ChessBoard::resetBoard()
 	board["G6"] = NULL;
 	board["H6"] = NULL;
 }
-	
+
 bool ChessBoard::submitMove(string source_square, string destination_square)
 {
 	/*	check if source_square and destination_square are on the board */
@@ -185,24 +186,48 @@ bool ChessBoard::submitMove(string source_square, string destination_square)
 		cout << "It is not Black's turn to move!" << endl;
 		return false;
 	}
-
+	
+	/*	check if there is a piece of the same color at destination_square */
+	if (board[destination_square] != NULL &&
+	board[source_square]->get_color() == 
+	board[destination_square]->get_color()) {
+		cout << turn << " cannot capture one of it's own pieces." << endl;
+		return false;
+	}
+	
+	/* convert the source_square and destination_square to ranks and files */
+	int rank_src = source_square[1] - 48;
+	int file_src = source_square[0] - 64;
+	int rank_dest = destination_square[1] - 48;
+	int file_dest = destination_square[0] - 64;
+	
 	/*	move the piece into that space (if the move is valid) */
-	if (board[source_square]->move()) {
+	if (board[source_square]->move(rank_src, file_src, rank_dest,
+	file_dest, board)) {
 		if (board[destination_square] == NULL) {
-			board[destination_square] = board[source_square];
 			cout << turn << "'s " << board[source_square]->get_name();
 			cout << " moves from " << source_square << " to ";
 			cout << destination_square << endl;
 		}
+		else {
+			/* "capture" the piece and delete it from the board and memory */
+			//delete board[destination_square];
+			cout << turn << "'s " << board[source_square]->get_name();
+			cout << " moves from " << source_square << " to ";
+			cout << destination_square << " taking " << opponent;
+			cout << "'s " << board[destination_square]->get_name() << endl;
+		}
+		/* set the source_square to be empty */
+		board[destination_square] = board[source_square];
+		board[source_square] = NULL;
+	}
+	/*	if the move was not valid, return false */
+	else {
+		/*	move() should, in this case, return an error in cout */
+		return false;
 	}
 	
 	change_turn();
-	
-	return true;
-}
-
-bool ChessBoard::empty(std::string position)
-{
 	return true;
 }
 		
@@ -210,18 +235,15 @@ void ChessBoard::change_turn()
 {
 	if(turn == "White") {
 		turn = "Black";
+		opponent = "White";
 	}
 	else {
 		turn = "White";
+		opponent = "Black";
 	}
 }
 
 string ChessBoard::get_turn()
 {
 	return turn;
-}
-
-void ChessBoard::remove(std::string position)
-{
-
 }
