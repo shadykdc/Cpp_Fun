@@ -10,6 +10,26 @@
 
 using namespace std;
 
+/* Questions:
+	I'm creating a new board in every move file.......
+	
+	How do I delete one piece?
+	
+	Should I exit when the game is over...?
+	
+	Check vs Checkmate uhhhhhhhh (putting a piece in the way)
+	
+	Is Piece an abstract class?
+	
+	To Do:
+	--prevent myself from moving into check
+		-- how will I test the "new" board without comiting?
+		-- might have to create an "undo" function
+	--write actual check functions
+	--queen
+	--destructors
+*/
+
 int main() {
 
 	// create board
@@ -22,39 +42,16 @@ int main() {
     ChessBoard cb;
     cout << endl;
 
-    cb.submitMove("D7", "D6"); // it's not black's turn to move
+    cb.submitMove("D7", "D6");
     cout << endl;
 
-    cb.submitMove("D4", "H6"); // there is no piece at D4
+    cb.submitMove("D4", "H6");
     cout << endl;
 
-    cb.submitMove("D2", "D4"); // legal move for white's pawn
+    cb.submitMove("D2", "D4");
     cout << endl;
 
-    cb.submitMove("F8", "B4"); // Black's Bishop can't jump
-    cout << endl;
-    
-    /* some additional tests */
-    
-    cb.submitMove("G8", "H6"); // Successful Black knight move
-    cout << endl;
-    
-    cb.submitMove("G1", "C3"); // Invalid White knight move
-    cout << endl;
-    
-    cb.submitMove("H2", "H3"); // Move a white pawn
-    cout << endl;
-    
-	cb.submitMove("H8", "G8"); // Successful move
-    cout << endl;
-    
-    cb.submitMove("H3", "H4"); // Successful move
-    cout << endl;
-
-	cb.submitMove("G8", "H4"); // Rooks only move in their ranks/files!
-    cout << endl;
-    
-    cb.submitMove("G8", "G4"); // Black Rook can't jump (rank)
+    cb.submitMove("F8", "B4");
     cout << endl;
     
     cout << "===========================" << endl;

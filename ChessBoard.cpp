@@ -9,7 +9,7 @@ using namespace std;
 
 ChessBoard::ChessBoard()
 {
-	cout  << endl << "A new chess game is started!" << endl;
+	cout  << "A new chess game is started!" << endl;
 	turn = "White";
 	opponent = "Black";
 	
@@ -88,8 +88,9 @@ void ChessBoard::resetBoard()
 {
 	board.clear();
 	
-	cout  << endl << "A new chess game is started!" << endl;
+	cout  << "A new chess game is started!" << endl;
 	turn = "White";
+	opponent = "Black";
 	
 	/* insert the white pieces to their starting positions */
 	board["A1"] = new Rook('w');
@@ -195,15 +196,8 @@ bool ChessBoard::submitMove(string source_square, string destination_square)
 		return false;
 	}
 	
-	/* convert the source_square and destination_square to ranks and files */
-	int rank_src = source_square[1] - 48;
-	int file_src = source_square[0] - 64;
-	int rank_dest = destination_square[1] - 48;
-	int file_dest = destination_square[0] - 64;
-	
 	/*	move the piece into that space (if the move is valid) */
-	if (board[source_square]->move(rank_src, file_src, rank_dest,
-	file_dest, board)) {
+	if (board[source_square]->move(source_square, destination_square,this)) {
 		if (board[destination_square] == NULL) {
 			cout << turn << "'s " << board[source_square]->get_name();
 			cout << " moves from " << source_square << " to ";
@@ -227,6 +221,21 @@ bool ChessBoard::submitMove(string source_square, string destination_square)
 		return false;
 	}
 	
+	/* check if the opponent is in stalemate */
+	if (check_stalemate(opponent)) {
+		cout << opponent << " is in stalemate" << endl;
+	}
+	
+	/* check if the opponent is in check */
+	if (check_check(opponent)) {
+		cout << opponent << " is in check" << endl;
+	}
+	
+	/* check if the opponent is in checkmate */
+	if (check_checkmate(opponent)) {
+		cout << opponent << " is in checkmate" << endl;
+	}
+	
 	change_turn();
 	return true;
 }
@@ -246,4 +255,27 @@ void ChessBoard::change_turn()
 string ChessBoard::get_turn()
 {
 	return turn;
+}
+
+map <std::string, Piece *> ChessBoard::get_board()
+{
+	return board;
+}
+
+bool ChessBoard::check_stalemate(string player)
+{
+	
+	return false;
+}
+
+bool ChessBoard::check_check(string player)
+{
+
+	return false;
+}
+
+bool ChessBoard::check_checkmate(string player)
+{
+	
+	return false;
 }
