@@ -205,29 +205,29 @@ bool ChessBoard::submitMove(string source_square, string destination_square)
 		}
 		else {
 			/* "capture" the piece and delete it from the board and memory */
-			//delete board[destination_square]; *****************************
+			//delete board[destination_square];
 			cout << turn << "'s " << board[source_square]->get_name();
 			cout << " moves from " << source_square << " to ";
 			cout << destination_square << " taking " << opponent;
 			cout << "'s " << board[destination_square]->get_name() << endl;
 		}
 		/* move the piece and set the source_square to be empty */
-		Piece *piecePtr = [destination square]; //saving this ptr just in case
+		Piece *piecePtr = board[destination_square]; //saving ptr just in case
 		board[destination_square] = board[source_square];
 		board[source_square] = NULL;
 		
 		/* make sure the current player has not left themselves in check */
 		if (check_check(turn)) {
-			/* undo our move ...good thing we saved that pointer! */
+			/* undo our move with the pointer we saved */
 			board[source_square] = board[destination_square];
 			board[destination_square] = piecePtr;
-			cout << cb->get_turn() << "'s ";
+			/*cout << get_turn() << "'s ";
 			cout << board[source_square]->get_name() << " cannot move";
-			cout << " to " << destination_square << "!" << endl;
+			cout << " to " << destination_square << "!" << endl;*/
 			return false;
 		}
 		else {
-			//delete that extra pointer *****************************
+			//delete piecePtr;
 		}
 	}
 	/*	if the move was not valid, return false */
@@ -279,13 +279,42 @@ map <std::string, Piece *> ChessBoard::get_board()
 
 bool ChessBoard::check_stalemate(string player)
 {
-	
 	return false;
 }
 
 bool ChessBoard::check_check(string player)
 {
+	/* color of opponent */
+	char opponent_piece;
+	if (player.compare("White")) {
+		opponent_piece = 'w';}
+	else {
+		opponent_piece = 'b';}
+	
+	/* an iterator */
+	map<string,Piece *>::iterator i;
+	
+	/* find the opponent's king */
+	string king_square;
+	for (i = board.begin(); i != board.end(); i++)
+	{
+		if ((i->second) != NULL &&
+		!(i->second)->get_name().compare("King") &&
+		(i->second)->get_color() == opponent_piece) {
+			king_square = i->first;
+		}
+	}
 
+	/* check to see if player is attacking that king with any piece */
+	for (i = board.begin(); i != board.end(); i++) {
+		if ((i->second) != NULL &&
+		(i->second)->get_color() == opponent_piece &&
+		(i->second)->move(i->first, king_square, this)) {
+			cout << player << "'s opponent is in check by " << player << "'s ";
+			cout << (i->second)->get_name()<< " on square "<< i->first << endl;
+			return true;
+		}
+	}
 	return false;
 }
 

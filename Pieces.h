@@ -11,9 +11,10 @@ class Piece
 {
 protected:
 	char color;
-	string position;
 	string name;
 public:
+	//Piece(char _color);
+	virtual ~Piece();
 	virtual bool move(string source_square, string destination_square,
 	ChessBoard *cb);
 	/* 	attempts to move a piece to a position */
@@ -29,6 +30,7 @@ class King: public Piece
 {
 public:
 	King(char _color);
+	~King();
 	
 	bool move(string source_square, string destination_square, ChessBoard *cb);
 	/*	returns true if the king can move to position
@@ -40,6 +42,7 @@ class Queen: public Piece
 {
 public:
 	Queen(char _color);
+	~Queen();
 	
 	bool move(string source_square, string destination_square, ChessBoard *cb);
 	/*	returns true if the queen can move to position
@@ -52,6 +55,7 @@ class Rook: public Piece
 {
 public:
 	Rook(char _color);
+	~Rook();
 	
 	bool move(string source_square, string destination_square, ChessBoard *cb);
 	/*	returns true if the rook can move to position
@@ -65,6 +69,7 @@ class Knight: public Piece
 {
 public:
 	Knight(char _color);
+	~Knight();
 	
 	bool move(string source_square, string destination_square, ChessBoard *cb);
 	/*	returns true if the knight can move to position
@@ -77,6 +82,7 @@ class Bishop: public Piece
 {
 public:
 	Bishop(char _color);
+	~Bishop();
 	
 	bool move(string source_square, string destination_square, ChessBoard *cb);
 	/*	returns true if the bishop can move to position
@@ -92,6 +98,7 @@ private:
 	int moves;
 public:
 	Pawn(char _color);
+	~Pawn();
 	
 	bool move(string source_square, string destination_square, ChessBoard *cb);
 	/*	returns true if the pawn can move to position
@@ -101,8 +108,6 @@ public:
 			that position is to the front left/right and occupied by same color
 			that position is 2 spaces forward and the pawn has moved
 			that position is 2 spaces forward and occupied */
-	
-	/* special capture rules */
 };
 
 #endif

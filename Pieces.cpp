@@ -6,38 +6,55 @@
 
 using namespace std;
 
+/*Piece::Piece(char _color)
+{
+	color = _color;
+	name = "Piece";
+} */
+
+Piece::~Piece() { }
+
 King::King(char _color) {
 	color = _color;
 	name = "King";
 }
 
+King::~King() { }
 
 Queen::Queen(char _color) {
 	color = _color;
 	name = "Queen";
 }
 
+Queen::~Queen() { }
 
 Rook::Rook(char _color) {
 	color = _color;
 	name = "Rook";
 }
 
+Rook::~Rook() { }
 
 Knight::Knight(char _color) {
 	color = _color;
 	name = "Knight";
 }
 
+Knight::~Knight() { }
+
 Bishop::Bishop(char _color) {
 	color = _color;
 	name = "Bishop";
 }
 
+Bishop::~Bishop() { }
+
 Pawn::Pawn(char _color) {
 	color = _color;
 	name = "Pawn";
 }
+
+Pawn::~Pawn() { }
 
 bool Piece::move(string source_square,string destination_square,ChessBoard *cb)
 {
@@ -57,7 +74,7 @@ bool King::move(string source_square,string destination_square,ChessBoard *cb)
 	/* return false if the king is moving more than one space */
 	if ((rank_src - rank_dest > 1) || (file_src - file_dest > 1) ||
 	(rank_dest - rank_src > 1) || (file_dest - file_src > 1)) {
-		cout << "The King can only move one space at a time." << endl;
+		//cout << "The King can only move one space at a time." << endl;
 		board.clear();
 		return false;
 	}
@@ -86,9 +103,9 @@ bool Queen::move(string source_square,string destination_square,ChessBoard *cb)
 			square[1] = rank_src+48; // or rank_dest, they're the same
 			map<string, Piece *> board = cb->get_board();
 			if (board[square] != NULL) {
-				cout << cb->get_turn() << "'s ";
+				/*cout << cb->get_turn() << "'s ";
 				cout << board[source_square]->get_name() << " cannot move to ";
-				cout << destination_square << "!" << endl;
+				cout << destination_square << "!" << endl;*/
 				board.clear();
 				return false;
 			}
@@ -104,9 +121,9 @@ bool Queen::move(string source_square,string destination_square,ChessBoard *cb)
 			square[0] = file_src+64; // or file_dest, they're the same
 			square[1] = lesser_rank+48;
 			if (board[square] != NULL) {
-				cout << cb->get_turn() << "'s ";
+				/*cout << cb->get_turn() << "'s ";
 				cout << board[source_square]->get_name() << " cannot move to ";
-				cout << destination_square << "!" << endl;
+				cout << destination_square << "!" << endl;*/
 				board.clear();
 				return false;
 			}
@@ -125,9 +142,9 @@ bool Queen::move(string source_square,string destination_square,ChessBoard *cb)
 				square[0] = lesser_file+64;
 				square[1] = lesser_rank+48;
 				if (board[square] != NULL) {
-					cout << cb->get_turn() << "'s ";
+					/*cout << cb->get_turn() << "'s ";
 					cout << board[source_square]->get_name() << " cannot move";
-					cout << " to " << destination_square << "!" << endl;
+					cout << " to " << destination_square << "!" << endl;*/
 					board.clear();
 					return false;
 				}
@@ -138,9 +155,9 @@ bool Queen::move(string source_square,string destination_square,ChessBoard *cb)
 	}
 	/* the destination must not be on the same diagonal, rank, or file */
 	else {
-		cout << cb->get_turn() << "'s ";
+		/*cout << cb->get_turn() << "'s ";
 		cout << board[source_square]->get_name() << " cannot move";
-		cout << " to " << destination_square << "!" << endl;
+		cout << " to " << destination_square << "!" << endl;*/
 		board.clear();
 		return false;
 	}
@@ -168,9 +185,9 @@ bool Rook::move(string source_square,string destination_square,ChessBoard *cb)
 			square[1] = rank_src+48; // or rank_dest, they're the same
 			map<string, Piece *> board = cb->get_board();
 			if (board[square] != NULL) {
-				cout << cb->get_turn() << "'s ";
+				/*cout << cb->get_turn() << "'s ";
 				cout << board[source_square]->get_name() << " cannot move to ";
-				cout << destination_square << "!" << endl;
+				cout << destination_square << "!" << endl;*/
 				board.clear();
 				return false;
 			}
@@ -187,9 +204,9 @@ bool Rook::move(string source_square,string destination_square,ChessBoard *cb)
 			square[0] = file_src+64; // or file_dest, they're the same
 			square[1] = lesser_rank+48;
 			if (board[square] != NULL) {
-				cout << cb->get_turn() << "'s ";
+				/*cout << cb->get_turn() << "'s ";
 				cout << board[source_square]->get_name() << " cannot move to ";
-				cout << destination_square << "!" << endl;
+				cout << destination_square << "!" << endl;*/
 				board.clear();
 				return false;
 			}
@@ -199,9 +216,9 @@ bool Rook::move(string source_square,string destination_square,ChessBoard *cb)
 	
 	/* return false if the destination is not in the same rank or file */
 	else {
-		cout << cb->get_turn() << "'s ";
+		/*cout << cb->get_turn() << "'s ";
 		cout << board[source_square]->get_name() << " cannot move to ";
-		cout << destination_square << "!" << endl;
+		cout << destination_square << "!" << endl;*/
 		board.clear();
 		return false;
 	}
@@ -222,9 +239,9 @@ bool Knight::move(string source_square,string destination_square,ChessBoard *cb)
 	/* return false if the knight does not move in an L */
 	int sum = (abs(rank_src-rank_dest)+abs(file_src-file_dest));
 	if (sum != 3) {
-		cout << cb->get_turn() << "'s ";
+		/*cout << cb->get_turn() << "'s ";
 		cout << board[source_square]->get_name() << " cannot move to ";
-		cout << destination_square << "!" << endl;
+		cout << destination_square << "!" << endl;*/
 		board.clear();
 		return false;
 	}
@@ -244,9 +261,9 @@ bool Bishop::move(string source_square,string destination_square,ChessBoard *cb)
 		
 	/* return false if the move is not on the Bishop's diagonal */
 	if (abs(rank_src - rank_dest) != abs(file_src - file_dest)) {
-		cout << cb->get_turn() << "'s ";
+		/*cout << cb->get_turn() << "'s ";
 		cout << board[source_square]->get_name() << " cannot move to ";
-		cout << destination_square << "!" << endl;
+		cout << destination_square << "!" << endl;*/
 		board.clear();
 		return false;
 	}
@@ -262,9 +279,9 @@ bool Bishop::move(string source_square,string destination_square,ChessBoard *cb)
 			square[0] = lesser_file+64;
 			square[1] = lesser_rank+48;
 			if (board[square] != NULL) {
-				cout << cb->get_turn() << "'s ";
+				/*cout << cb->get_turn() << "'s ";
 				cout << board[source_square]->get_name() << " cannot move to ";
-				cout << destination_square << "!" << endl;
+				cout << destination_square << "!" << endl;*/
 				board.clear();
 				return false;
 			}
@@ -288,9 +305,9 @@ bool Pawn::move(string source_square, string destination_square, ChessBoard *cb)
 	
 	/* return false if the pawn is at the end of the board */
 	if (rank_src == 8 || rank_src == 1){
-		cout << cb->get_turn() << "'s ";
+		/*cout << cb->get_turn() << "'s ";
 		cout << board[source_square]->get_name() << " cannot move to ";
-		cout << destination_square << "!" << endl;
+		cout << destination_square << "!" << endl;*/
 		board.clear();
 		return false;
 	}
@@ -361,8 +378,8 @@ bool Pawn::move(string source_square, string destination_square, ChessBoard *cb)
 		return true;
 	}
 	
-	cout << cb->get_turn() << "'s " << board[source_square]->get_name();
-	cout << " cannot move to " << destination_square << "!" << endl;
+	/*cout << cb->get_turn() << "'s " << board[source_square]->get_name();
+	cout << " cannot move to " << destination_square << "!" << endl;*/
 	board.clear();
 	return false;
 }
