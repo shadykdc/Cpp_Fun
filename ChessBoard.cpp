@@ -196,8 +196,8 @@ bool ChessBoard::submitMove(string source_square, string destination_square)
 		return false;
 	}
 	
-	/*	move the piece into that space (if the move is valid) */
-	if (board[source_square]->move(source_square, destination_square,this)) {
+	/*	if move is valid, move piece to destination (and maybe capture) */
+	if (board[source_square]->move(source_square, destination_square, this)) {
 		if (board[destination_square] == NULL) {
 			cout << turn << "'s " << board[source_square]->get_name();
 			cout << " moves from " << source_square << " to ";
@@ -205,15 +205,30 @@ bool ChessBoard::submitMove(string source_square, string destination_square)
 		}
 		else {
 			/* "capture" the piece and delete it from the board and memory */
-			//delete board[destination_square];
+			//delete board[destination_square]; *****************************
 			cout << turn << "'s " << board[source_square]->get_name();
 			cout << " moves from " << source_square << " to ";
 			cout << destination_square << " taking " << opponent;
 			cout << "'s " << board[destination_square]->get_name() << endl;
 		}
-		/* set the source_square to be empty */
+		/* move the piece and set the source_square to be empty */
+		Piece *piecePtr = [destination square]; //saving this ptr just in case
 		board[destination_square] = board[source_square];
 		board[source_square] = NULL;
+		
+		/* make sure the current player has not left themselves in check */
+		if (check_check(turn)) {
+			/* undo our move ...good thing we saved that pointer! */
+			board[source_square] = board[destination_square];
+			board[destination_square] = piecePtr;
+			cout << cb->get_turn() << "'s ";
+			cout << board[source_square]->get_name() << " cannot move";
+			cout << " to " << destination_square << "!" << endl;
+			return false;
+		}
+		else {
+			//delete that extra pointer *****************************
+		}
 	}
 	/*	if the move was not valid, return false */
 	else {

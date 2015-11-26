@@ -11,30 +11,25 @@
 using namespace std;
 
 /* Questions:
-	I'm creating a new board in every move file.......
+	I'm creating a new board in every move file...
+	Should I make my ChessBoard and Pieces friends?
 	
-	How do I delete one piece?
+	How do I delete one piece? Is my clear deleting my pieces? Deconstructors?
 	
 	Should I exit when the game is over...?
 	
-	Check vs Checkmate uhhhhhhhh (putting a piece in the way)
+	Check vs Checkmate (checking if I can put a piece in the way)
 	
 	Is Piece an abstract class?
 	
 	To Do:
-	--prevent myself from moving into check
-		-- how will I test the "new" board without comiting?
-		-- might have to create an "undo" function
 	--write actual check functions
-	--queen
 	--destructors
 */
 
 int main() {
 
-	// create board
-	
-    cout << "============================" << endl;
+	cout << "============================" << endl;
     cout << "  Testing the Chess Engine  " << endl;
     cout << "============================" << endl;
     cout << endl;
