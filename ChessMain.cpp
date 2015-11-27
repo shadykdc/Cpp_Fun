@@ -26,7 +26,6 @@ Can I have a flag to turn off cout when checking for check in my move() func?
 	To Do:
 	--write actual check functions
 	--destructors
-	--strcmp
 */
 
 int main() {

@@ -294,24 +294,22 @@ bool ChessBoard::check_check(string player)
 	/* an iterator */
 	map<string,Piece *>::iterator i;
 	
-	/* find the opponent's king */
+	/* find the player's king */
 	string king_square;
 	for (i = board.begin(); i != board.end(); i++)
 	{
 		if ((i->second) != NULL &&
 		!(i->second)->get_name().compare("King") &&
-		(i->second)->get_color() == opponent_piece) {
+		(i->second)->get_color() != opponent_piece) {
 			king_square = i->first;
 		}
 	}
 
-	/* check to see if player is attacking that king with any piece */
+	/* check to see if player's king is under attack */
 	for (i = board.begin(); i != board.end(); i++) {
 		if ((i->second) != NULL &&
 		(i->second)->get_color() == opponent_piece &&
 		(i->second)->move(i->first, king_square, this)) {
-			cout << player << "'s opponent is in check by " << player << "'s ";
-			cout << (i->second)->get_name()<< " on square "<< i->first << endl;
 			return true;
 		}
 	}
@@ -320,6 +318,36 @@ bool ChessBoard::check_check(string player)
 
 bool ChessBoard::check_checkmate(string player)
 {
-	
+	/* if the king is not in check, return false */
+	if (!check_check(player)) {
+		return false;
+	}
+
+	/* if any player move results in !check, return false */
+	map<string,Piece *>::iterator i; // i is the piece
+	map<string,Piece *>::iterator j; // j is the potential move
+	for (i = board.begin(); i != board.end(); i++) {
+		for (j = board.begin(); j != board.end(); j++) {
+			/* if player's piece can move somewhere... */
+			if ((i->first).compare(j->first) &&
+			(i->second) != NULL &&
+			(i->second)->get_color() != opponent_piece &&
+			(i->second)->move(i->first, j->first, this)) {
+				/* ...try the move; if it results in check, undo */
+				Piece *piecePtr = board[j->second];
+				board[j->first] = board[i->second];
+				board[i->first] = NULL;
+				if (check_check(player)) {
+					// undo
+				}
+				/* if it results in not check, still undo but return false */
+				else {
+					// undo
+					return false;
+				}
+			}
+		}
+	}
+	/* if we've tried the whole board, then the player must be in checkmate */
 	return false;
 }
