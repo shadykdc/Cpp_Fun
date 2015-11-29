@@ -52,7 +52,7 @@ int main() {
     cb.submitMove("F8", "B4");
     cout << endl;
     
-    cout << endl;
+   /* cout << endl;
    	cout << "============================" << endl;
     cout << "        Katie's Tests       " << endl;
     cout << "============================" << endl;
@@ -236,7 +236,7 @@ int main() {
     cout << endl;
     
     cb.submitMove("B4", "A3"); // move w bishop, stalemate!
-    cout << endl;
+    cout << endl; */
    
     cout << "===========================" << endl;
     cout << " Alekhine vs. Vasic (1931) " << endl;
