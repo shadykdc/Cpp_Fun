@@ -64,6 +64,13 @@ bool Piece::move(string source_square,string destination_square,ChessBoard *cb)
 bool King::move(string source_square,string destination_square,ChessBoard *cb)
 {
 	map<string, Piece *> board = cb->get_board();
+	
+	/*	check if there is a piece of the same color at destination_square */
+	if (board[destination_square] != NULL &&
+	board[source_square]->get_color() == 
+	board[destination_square]->get_color()) {
+		return false;
+	}
 
 	/* convert the source_square and destination_square to ranks and files */
 	int rank_src = source_square[1] - 48;
@@ -85,6 +92,13 @@ bool King::move(string source_square,string destination_square,ChessBoard *cb)
 bool Queen::move(string source_square,string destination_square,ChessBoard *cb)
 {
 	map<string, Piece *> board = cb->get_board();
+	
+	/*	check if there is a piece of the same color at destination_square */
+	if (board[destination_square] != NULL &&
+	board[source_square]->get_color() == 
+	board[destination_square]->get_color()) {
+		return false;
+	}
 	
 	/* convert the source_square and destination_square to ranks and files */
 	int rank_src = source_square[1] - 48;
@@ -168,6 +182,13 @@ bool Queen::move(string source_square,string destination_square,ChessBoard *cb)
 bool Rook::move(string source_square,string destination_square,ChessBoard *cb)
 {
 	map<string, Piece *> board = cb->get_board();
+	
+	/*	check if there is a piece of the same color at destination_square */
+	if (board[destination_square] != NULL &&
+	board[source_square]->get_color() == 
+	board[destination_square]->get_color()) {
+		return false;
+	}
 
 	/* convert the source_square and destination_square to ranks and files */
 	int rank_src = source_square[1] - 48;
@@ -229,6 +250,13 @@ bool Rook::move(string source_square,string destination_square,ChessBoard *cb)
 bool Knight::move(string source_square,string destination_square,ChessBoard *cb)
 {
 	map<string, Piece *> board = cb->get_board();
+	
+	/*	check if there is a piece of the same color at destination_square */
+	if (board[destination_square] != NULL &&
+	board[source_square]->get_color() == 
+	board[destination_square]->get_color()) {
+		return false;
+	}
 
 	/* convert the source_square and destination_square to ranks and files */
 	int rank_src = source_square[1] - 48;
@@ -252,6 +280,13 @@ bool Knight::move(string source_square,string destination_square,ChessBoard *cb)
 bool Bishop::move(string source_square,string destination_square,ChessBoard *cb)
 {
 	map<string, Piece *> board = cb->get_board();
+	
+	/*	check if there is a piece of the same color at destination_square */
+	if (board[destination_square] != NULL &&
+	board[source_square]->get_color() == 
+	board[destination_square]->get_color()) {
+		return false;
+	}
 
 	/* convert the source_square and destination_square to ranks and files */
 	int rank_src = source_square[1] - 48;
@@ -296,6 +331,13 @@ bool Bishop::move(string source_square,string destination_square,ChessBoard *cb)
 bool Pawn::move(string source_square, string destination_square, ChessBoard *cb)
 {
 	map<string, Piece *> board = cb->get_board();
+	
+	/*	check if there is a piece of the same color at destination_square */
+	if (board[destination_square] != NULL &&
+	board[source_square]->get_color() == 
+	board[destination_square]->get_color()) {
+		return false;
+	}
 	
 	/* convert the source_square and destination_square to ranks and files */
 	int rank_src = source_square[1] - 48;
@@ -361,9 +403,10 @@ bool Pawn::move(string source_square, string destination_square, ChessBoard *cb)
 		return true;
 	}
 	
-	/* return true if destination is diagonally forward and has a black piece */
+	/* return true if dest is diagonally forward and has an opponent piece */
 	if (rank_dest - rank_src == 1 &&				// WHITE
 	abs(file_dest - file_src) == 1 &&
+	board[destination_square] != NULL &&
 	board[source_square]->get_color() == 'w' &&
 	board[destination_square]->get_color() == 'b') {
 		board.clear();
@@ -372,6 +415,7 @@ bool Pawn::move(string source_square, string destination_square, ChessBoard *cb)
 	
 	if (rank_src - rank_dest == 1 &&				// BLACK
 	abs(file_dest - file_src) == 1 &&
+	board[destination_square] != NULL &&
 	board[source_square]->get_color() == 'b' &&
 	board[destination_square]->get_color() == 'w') {
 		board.clear();

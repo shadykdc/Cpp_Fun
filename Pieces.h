@@ -35,6 +35,7 @@ public:
 	bool move(string source_square, string destination_square, ChessBoard *cb);
 	/*	returns true if the king can move to position
 		returns false if:
+			there is a piece of the same color in the destination square
 			that position is not adjacent to the king's current position */
 };
 
@@ -47,6 +48,7 @@ public:
 	bool move(string source_square, string destination_square, ChessBoard *cb);
 	/*	returns true if the queen can move to position
 		returns false if:
+			there is a piece of the same color in the destination square
 			that position is not along the queen's diagonals, vert, or horiz
 			there is another piece between the queen and the position */
 };
@@ -60,6 +62,7 @@ public:
 	bool move(string source_square, string destination_square, ChessBoard *cb);
 	/*	returns true if the rook can move to position
 		returns false if:
+			there is a piece of the same color in the destination square
 			moving the rook would result in putting the king in check
 			that position is not along the rook's vertical or horizontal
 			there is another piece between the rook and the position */
@@ -74,6 +77,7 @@ public:
 	bool move(string source_square, string destination_square, ChessBoard *cb);
 	/*	returns true if the knight can move to position
 		returns false if:
+			there is a piece of the same color in the destination square
 			moving the knight would result in putting the king in check
 			that position is not an L away from the knight's position */
 };
@@ -87,6 +91,7 @@ public:
 	bool move(string source_square, string destination_square, ChessBoard *cb);
 	/*	returns true if the bishop can move to position
 		returns false if:
+			there is a piece of the same color in the destination square
 			moving the bishop would result in putting the king in check
 			that position is not along the bishop's diagonals
 			there is another piece between the bishop and the position */
@@ -103,6 +108,7 @@ public:
 	bool move(string source_square, string destination_square, ChessBoard *cb);
 	/*	returns true if the pawn can move to position
 		returns false if:
+			there is a piece of the same color in the destination square
 			moving the pawn would result in putting the king in check
 			that position is infront of the pawn and occupied
 			that position is to the front left/right and occupied by same color

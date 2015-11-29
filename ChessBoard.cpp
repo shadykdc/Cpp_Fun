@@ -227,7 +227,7 @@ bool ChessBoard::submitMove(string source_square, string destination_square)
 			return false;
 		}
 		else {
-			//delete piecePtr;
+			delete piecePtr; //I think I need this.
 		}
 	}
 	/*	if the move was not valid, return false */
@@ -241,14 +241,14 @@ bool ChessBoard::submitMove(string source_square, string destination_square)
 		cout << opponent << " is in stalemate" << endl;
 	}
 	
-	/* check if the opponent is in check */
-	if (check_check(opponent)) {
-		cout << opponent << " is in check" << endl;
+	/* check if the opponent is in checkmate */
+	else if (check_checkmate(opponent)) {
+		cout << opponent << " is in checkmate" << endl;
 	}
 	
-	/* check if the opponent is in checkmate */
-	if (check_checkmate(opponent)) {
-		cout << opponent << " is in checkmate" << endl;
+	/* check if the opponent is in check */
+	else if (check_check(opponent)) {
+		cout << opponent << " is in check" << endl;
 	}
 	
 	change_turn();
@@ -279,7 +279,48 @@ map <std::string, Piece *> ChessBoard::get_board()
 
 bool ChessBoard::check_stalemate(string player)
 {
-	return false;
+	/* if the king is in check, return false */
+	if (check_check(player)) {
+		return false;
+	}
+	
+	/* color of opponent */
+	char opponent_piece;
+	if (player.compare("White")) {
+		opponent_piece = 'w';}
+	else {
+		opponent_piece = 'b';}
+
+	/* if any player move results in !check, return false */
+	map<string,Piece *>::iterator i; // i is the piece
+	map<string,Piece *>::iterator j; // j is the potential move
+	
+	for (i = board.begin(); i != board.end(); i++) {
+		for (j = board.begin(); j != board.end(); j++) {
+			/* if player's piece can move somewhere... */
+			if ((i->first).compare(j->first) &&
+			(i->second) != NULL &&
+			(i->second)->get_color() != opponent_piece &&
+			(i->second)->move(i->first, j->first, this)) {
+				/* ...try the move; if it results in check, undo */
+				Piece *piecePtr = j->second;
+				board[j->first] = i->second;
+				board[i->first] = NULL;
+				if (check_check(player)) {
+					board[i->first] = board[j->first];
+					board[j->first] = piecePtr;
+				}
+				/* if it results in not check, still undo but return false */
+				else {
+					board[i->first] = board[j->first];
+					board[j->first] = piecePtr;
+					return false;
+				}
+			}
+		}
+	}
+	/* if we've tried the whole board, then the player must be in stalemate */
+	return true;
 }
 
 bool ChessBoard::check_check(string player)
@@ -322,10 +363,18 @@ bool ChessBoard::check_checkmate(string player)
 	if (!check_check(player)) {
 		return false;
 	}
+	
+	/* color of opponent */
+	char opponent_piece;
+	if (player.compare("White")) {
+		opponent_piece = 'w';}
+	else {
+		opponent_piece = 'b';}
 
 	/* if any player move results in !check, return false */
 	map<string,Piece *>::iterator i; // i is the piece
 	map<string,Piece *>::iterator j; // j is the potential move
+	
 	for (i = board.begin(); i != board.end(); i++) {
 		for (j = board.begin(); j != board.end(); j++) {
 			/* if player's piece can move somewhere... */
@@ -334,20 +383,22 @@ bool ChessBoard::check_checkmate(string player)
 			(i->second)->get_color() != opponent_piece &&
 			(i->second)->move(i->first, j->first, this)) {
 				/* ...try the move; if it results in check, undo */
-				Piece *piecePtr = board[j->second];
-				board[j->first] = board[i->second];
+				Piece *piecePtr = j->second;
+				board[j->first] = i->second;
 				board[i->first] = NULL;
 				if (check_check(player)) {
-					// undo
+					board[i->first] = board[j->first];
+					board[j->first] = piecePtr;
 				}
 				/* if it results in not check, still undo but return false */
 				else {
-					// undo
+					board[i->first] = board[j->first];
+					board[j->first] = piecePtr;
 					return false;
 				}
 			}
 		}
 	}
 	/* if we've tried the whole board, then the player must be in checkmate */
-	return false;
+	return true;
 }
