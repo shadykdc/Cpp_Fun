@@ -221,9 +221,9 @@ bool ChessBoard::submitMove(string source_square, string destination_square)
 			/* undo our move with the pointer we saved */
 			board[source_square] = board[destination_square];
 			board[destination_square] = piecePtr;
-			/*cout << get_turn() << "'s ";
+			cout << get_turn() << "'s ";
 			cout << board[source_square]->get_name() << " cannot move";
-			cout << " to " << destination_square << "!" << endl;*/
+			cout << " to " << destination_square << " because check!" << endl;
 			return false;
 		}
 		else {

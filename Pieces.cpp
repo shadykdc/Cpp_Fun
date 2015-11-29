@@ -143,28 +143,46 @@ bool Queen::move(string source_square,string destination_square,ChessBoard *cb)
 			}
 			lesser_rank++;
 		}
-	}	
+	}
 	/* if the two squares share the same diagonal, check the spaces between */
 	else if (abs(rank_src - rank_dest) == abs(file_src - file_dest)) {
 		int lesser_rank = min(rank_src, rank_dest)+1;
-		int greater_rank = max(rank_src, rank_dest);
+		int greater_rank = max(rank_src, rank_dest)-1;
 		int lesser_file = min(file_src, file_dest)+1;
-		int greater_file = max(file_src, file_dest);
-		while (lesser_rank < greater_rank) {
-			while (lesser_file < greater_file) {
-				string square = "00";
-				square[0] = lesser_file+64;
-				square[1] = lesser_rank+48;
-				if (board[square] != NULL) {
-					/*cout << cb->get_turn() << "'s ";
-					cout << board[source_square]->get_name() << " cannot move";
-					cout << " to " << destination_square << "!" << endl;*/
-					board.clear();
-					return false;
-				}
-				lesser_rank++;
-				lesser_file++;
+		int greater_file = max(file_src, file_dest)-1;
+		/* moving along a SW-NE (/) line */
+		while (lesser_rank <= greater_rank && lesser_file <= greater_file &&
+		((rank_src < rank_dest && file_src < file_dest) ||
+		(rank_src > rank_dest && file_src > file_dest))) {
+			string square = "00";
+			square[0] = lesser_file+64;
+			square[1] = lesser_rank+48;
+			if (board[square] != NULL) {
+				/*cout << cb->get_turn() << "'s ";
+				cout << board[source_square]->get_name() << " cannot move";
+				cout << " to " << destination_square << "!";*/
+				board.clear();
+				return false;
 			}
+			lesser_rank++;
+			lesser_file++;
+		}
+		/* moving along a NW-SE (\) line */
+		while (lesser_rank <= greater_rank && lesser_file <= greater_file &&
+		((rank_src < rank_dest && file_src > file_dest) ||
+		(rank_src > rank_dest && file_src < file_dest))) {
+			string square = "00";
+			square[0] = greater_file+64;
+			square[1] = lesser_rank+48;
+			if (board[square] != NULL) {
+				/*cout << cb->get_turn() << "'s ";
+				cout << board[source_square]->get_name() << " cannot move";
+				cout << " to " << destination_square << "!";*/
+				board.clear();
+				return false;
+			}
+			lesser_rank++;
+			greater_file--;
 		}
 	}
 	/* the destination must not be on the same diagonal, rank, or file */
@@ -196,7 +214,7 @@ bool Rook::move(string source_square,string destination_square,ChessBoard *cb)
 	int rank_dest = destination_square[1] - 48;
 	int file_dest = destination_square[0] - 64;
 	
-	/* if the two squares share the same file, check the spaces between */
+	/* if the two squares share the same rank, check the spaces between */
 	if (rank_src == rank_dest) {
 		int lesser_file = min(file_src, file_dest)+1;
 		int greater_file = max(file_src, file_dest);
@@ -217,7 +235,7 @@ bool Rook::move(string source_square,string destination_square,ChessBoard *cb)
 	}
 	
 	/* if the two squares share the same file, check the spaces between */
-	if (file_src == file_dest) {
+	else if (file_src == file_dest) {
 		int lesser_rank = min(rank_src, rank_dest)+1;
 		int greater_rank = max(rank_src, rank_dest);
 		while (lesser_rank < greater_rank){
@@ -305,24 +323,42 @@ bool Bishop::move(string source_square,string destination_square,ChessBoard *cb)
 	
 	/* return false if there is a piece between the source and destination */
 	int lesser_rank = min(rank_src, rank_dest)+1;
-	int greater_rank = max(rank_src, rank_dest);
+	int greater_rank = max(rank_src, rank_dest)-1;
 	int lesser_file = min(file_src, file_dest)+1;
-	int greater_file = max(file_src, file_dest);
-	while (lesser_rank < greater_rank) {
-		while (lesser_file < greater_file) {
-			string square = "00";
-			square[0] = lesser_file+64;
-			square[1] = lesser_rank+48;
-			if (board[square] != NULL) {
-				/*cout << cb->get_turn() << "'s ";
-				cout << board[source_square]->get_name() << " cannot move to ";
-				cout << destination_square << "!" << endl;*/
-				board.clear();
-				return false;
-			}
-			lesser_rank++;
-			lesser_file++;
+	int greater_file = max(file_src, file_dest)-1;
+	/* moving along a SW-NE (/) line */
+	while (lesser_rank <= greater_rank && lesser_file <= greater_file &&
+	((rank_src < rank_dest && file_src < file_dest) ||
+	(rank_src > rank_dest && file_src > file_dest))) {
+		string square = "00";
+		square[0] = lesser_file+64;
+		square[1] = lesser_rank+48;
+		if (board[square] != NULL) {
+			/*cout << cb->get_turn() << "'s ";
+			cout << board[source_square]->get_name() << " cannot move";
+			cout << " to " << destination_square << "!";*/
+			board.clear();
+			return false;
 		}
+		lesser_rank++;
+		lesser_file++;
+	}
+	/* moving along a NW-SE (\) line */
+	while (lesser_rank <= greater_rank && lesser_file <= greater_file &&
+	((rank_src < rank_dest && file_src > file_dest) ||
+	(rank_src > rank_dest && file_src < file_dest))) {
+		string square = "00";
+		square[0] = greater_file+64;
+		square[1] = lesser_rank+48;
+		if (board[square] != NULL) {
+			/*cout << cb->get_turn() << "'s ";
+			cout << board[source_square]->get_name() << " cannot move";
+			cout << " to " << destination_square << "!";*/
+			board.clear();
+			return false;
+		}
+		lesser_rank++;
+		greater_file--;
 	}
 	board.clear();
 	return true;

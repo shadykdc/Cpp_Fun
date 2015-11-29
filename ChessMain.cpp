@@ -100,7 +100,7 @@ int main() {
     cb.submitMove("D8", "F6"); // move b queen diagonally
     cout << endl;
     
-    cb.submitMove("A1", "B1"); // move w rook horizontally /problem****
+    cb.submitMove("A1", "B1"); // move w rook horizontally
     cout << endl;
 
     cb.submitMove("F6", "D6"); // move b queen horizontally
@@ -109,7 +109,7 @@ int main() {
     cb.submitMove("B1", "B2"); // move w rook vertically
     cout << endl;
     
-    cb.submitMove("D6", "D2");	// take a w piece with the b queen
+    cb.submitMove("D6", "D2");	// capture w pawn with b queen
     cout << endl;				// CHECK!!! (but not checkmate)
     
     cb.submitMove("E1", "D2"); // capture b queen with w king diagonally
@@ -130,10 +130,13 @@ int main() {
     cb.submitMove("F2", "F3"); // move w pawn one space
     cout << endl;
     
-    cb.submitMove("E4", "F3"); // b pawn capture w pawn
+    cb.submitMove("E4", "F3"); // b pawn captures w pawn
     cout << endl;
     
-    cb.submitMove("F8", "B4"); // capture w pawn with b bishop
+    cb.submitMove("E2", "F3"); // capture b pawn with w pawn
+    cout << endl;
+    
+    cb.submitMove("F8", "B4"); // capture w pawn with b bishop 
     cout << endl;
     
     cb.submitMove("C3", "D5"); // attempt to move knight, putting king in check
@@ -145,7 +148,92 @@ int main() {
     cb.submitMove("B2", "B4"); // take bishop with w rook
     cout << endl;
     
-    // http://lichess.org/editor/r1b1k1nr/pppp1ppp/2n5/8/1R6/B1N2p2/P1PKP1PP/3Q1BNR_w_KQkq_-
+    cb.submitMove("C6", "B4"); // take w rook with b knight
+    cout << endl;
+    
+    cb.submitMove("A3", "B4"); // take b knight with w bishop 
+    cout << endl;
+
+    cb.submitMove("B7", "B5"); // move b pawn 2 spaces
+    cout << endl;
+    
+    cb.submitMove("D1", "E2"); // w queen to E2, check!
+    cout << endl;
+    
+    cb.submitMove("G8", "E7"); // put b knight in the way
+    cout << endl;
+    
+    cb.submitMove("B4", "E7"); // take b knight with w bishop
+    cout << endl;
+    
+    cb.submitMove("A8", "B8"); // move b rook horizontally one space
+    cout << endl;
+    
+    cb.submitMove("E2", "B5"); // take b pawn with w queen
+    cout << endl;
+    
+    cb.submitMove("F7", "F6"); // move b pawn one space
+    cout << endl;
+    
+    cb.submitMove("B5", "B8"); // take b rook with w queen
+    cout << endl;
+    
+    cb.submitMove("F6", "F5"); // move b pawn one space
+    cout << endl;
+    
+    cb.submitMove("B8", "C8"); // take b bishop with w queen, check!
+    cout << endl;
+    
+    cb.submitMove("E8", "F7"); // move b king out of the way
+    cout << endl;
+    
+    cb.submitMove("C8", "H8"); // take b rook with w queen
+    cout << endl;
+    
+    cb.submitMove("F5", "F4"); // move b pawn one space
+    cout << endl;
+    
+    cb.submitMove("G2", "G4"); // move w pawn two spaces
+    cout << endl;
+    
+    cb.submitMove("G7", "G5"); // move b pawn two spaces
+    cout << endl;
+    
+    cb.submitMove("H2", "H4"); // move w pawn two spaces
+    cout << endl;
+    
+    cb.submitMove("H7", "H6"); // move b pawn one space
+    cout << endl;
+    
+    cb.submitMove("H4", "H5"); // move w pawn one space
+    cout << endl;
+    
+    cb.submitMove("D7", "D5"); // move b pawn two spaces
+    cout << endl;
+    
+    cb.submitMove("C3", "D5"); // take b pawn with w knight
+    cout << endl;
+    
+    cb.submitMove("A7", "A5"); // move b pawn two spaces
+    cout << endl;
+    
+    cb.submitMove("D5", "C7"); // take b pawn with w knight ...black is in chk?
+    cout << endl;
+    
+    cb.submitMove("F7", "G6"); // try to move the b king
+    cout << endl;
+    
+    cb.submitMove("A5", "A4"); // move b pawn one space **doesn't work b/c
+    cout << endl;									//**it thinkes we're in chk
+    
+    cb.submitMove("E7", "B4"); // move w bishop
+    cout << endl;
+    
+    cb.submitMove("A4", "A3"); // move b pawn one space
+    cout << endl;
+    
+    cb.submitMove("B4", "A3"); // move w bishop, stalemate!
+    cout << endl;
    
     cout << "===========================" << endl;
     cout << " Alekhine vs. Vasic (1931) " << endl;
