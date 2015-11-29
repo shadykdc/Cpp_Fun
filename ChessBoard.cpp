@@ -188,29 +188,8 @@ bool ChessBoard::submitMove(string source_square, string destination_square)
 		return false;
 	}
 	
-	/*	check if there is a piece of the same color at destination_square */
-	if (board[destination_square] != NULL &&
-	board[source_square]->get_color() == 
-	board[destination_square]->get_color()) {
-		cout << turn << " cannot capture one of it's own pieces." << endl;
-		return false;
-	}
-	
 	/*	if move is valid, move piece to destination (and maybe capture) */
-	if (board[source_square]->move(source_square, destination_square, this)) {
-		if (board[destination_square] == NULL) {
-			cout << turn << "'s " << board[source_square]->get_name();
-			cout << " moves from " << source_square << " to ";
-			cout << destination_square << endl;
-		}
-		else {
-			/* "capture" the piece and delete it from the board and memory */
-			//delete board[destination_square];
-			cout << turn << "'s " << board[source_square]->get_name();
-			cout << " moves from " << source_square << " to ";
-			cout << destination_square << " taking " << opponent;
-			cout << "'s " << board[destination_square]->get_name() << endl;
-		}
+	if (board[source_square]->move(source_square,destination_square,this,true)){
 		/* move the piece and set the source_square to be empty */
 		Piece *piecePtr = board[destination_square]; //saving ptr just in case
 		board[destination_square] = board[source_square];
@@ -218,16 +197,25 @@ bool ChessBoard::submitMove(string source_square, string destination_square)
 		
 		/* make sure the current player has not left themselves in check */
 		if (check_check(turn)) {
-			/* undo our move with the pointer we saved */
+			/* undo our move with the pointer we saved and print error */
 			board[source_square] = board[destination_square];
 			board[destination_square] = piecePtr;
-			cout << get_turn() << "'s ";
+			cout << turn << "'s ";
 			cout << board[source_square]->get_name() << " cannot move";
-			cout << " to " << destination_square << " because check!" << endl;
+			cout << " to " << destination_square << "!" << endl;
 			return false;
 		}
 		else {
-			delete piecePtr; //I think I need this.
+			/* if they're not in check then we can delete that piecePtr */
+			cout << turn << "'s " << board[destination_square]->get_name();
+			cout << " moves from " << source_square << " to ";
+			cout << destination_square;
+			if (piecePtr != NULL) {
+				cout << " taking " << opponent << "'s ";
+				cout << board[destination_square]->get_name();
+				delete piecePtr;
+			}
+			cout << endl;
 		}
 	}
 	/*	if the move was not valid, return false */
@@ -279,7 +267,7 @@ map <std::string, Piece *> ChessBoard::get_board()
 
 bool ChessBoard::check_stalemate(string player)
 {
-	/* if the king is in check, return false */
+	/* if player is in check, return false */
 	if (check_check(player)) {
 		return false;
 	}
@@ -301,7 +289,7 @@ bool ChessBoard::check_stalemate(string player)
 			if ((i->first).compare(j->first) &&
 			(i->second) != NULL &&
 			(i->second)->get_color() != opponent_piece &&
-			(i->second)->move(i->first, j->first, this)) {
+			(i->second)->move(i->first, j->first, this, false)) {
 				/* ...try the move; if it results in check, undo */
 				Piece *piecePtr = j->second;
 				board[j->first] = i->second;
@@ -319,7 +307,7 @@ bool ChessBoard::check_stalemate(string player)
 			}
 		}
 	}
-	/* if we've tried the whole board, then the player must be in stalemate */
+	/* we've tried the whole board so the player must be in stalemate */
 	return true;
 }
 
@@ -350,7 +338,7 @@ bool ChessBoard::check_check(string player)
 	for (i = board.begin(); i != board.end(); i++) {
 		if ((i->second) != NULL &&
 		(i->second)->get_color() == opponent_piece &&
-		(i->second)->move(i->first, king_square, this)) {
+		(i->second)->move(i->first, king_square, this, false)) {
 			return true;
 		}
 	}
@@ -381,7 +369,7 @@ bool ChessBoard::check_checkmate(string player)
 			if ((i->first).compare(j->first) &&
 			(i->second) != NULL &&
 			(i->second)->get_color() != opponent_piece &&
-			(i->second)->move(i->first, j->first, this)) {
+			(i->second)->move(i->first, j->first, this, false)) {
 				/* ...try the move; if it results in check, undo */
 				Piece *piecePtr = j->second;
 				board[j->first] = i->second;
@@ -399,6 +387,6 @@ bool ChessBoard::check_checkmate(string player)
 			}
 		}
 	}
-	/* if we've tried the whole board, then the player must be in checkmate */
+	/* we've tried the whole board so the player must be in checkmate */
 	return true;
 }

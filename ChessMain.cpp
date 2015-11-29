@@ -25,7 +25,9 @@ Can I have a flag to turn off cout when checking for check in my move() func?
 	
 	To Do:
 	--destructors
-	--make sure we can't move a piece to where it already is
+	--pass board as reference
+	--helper functions
+	--get rid of board.clear()'s
 */
 
 int main() {
@@ -49,7 +51,8 @@ int main() {
 
     cb.submitMove("F8", "B4");
     cout << endl;
-   
+    
+    cout << endl;
    	cout << "============================" << endl;
     cout << "        Katie's Tests       " << endl;
     cout << "============================" << endl;
@@ -217,14 +220,14 @@ int main() {
     cb.submitMove("A7", "A5"); // move b pawn two spaces
     cout << endl;
     
-    cb.submitMove("D5", "C7"); // take b pawn with w knight ...black is in chk?
+    cb.submitMove("D5", "C7"); // take b pawn with w knight
     cout << endl;
     
     cb.submitMove("F7", "G6"); // try to move the b king
     cout << endl;
     
-    cb.submitMove("A5", "A4"); // move b pawn one space **doesn't work b/c
-    cout << endl;									//**it thinkes we're in chk
+    cb.submitMove("A5", "A4"); // move b pawn one space
+    cout << endl;
     
     cb.submitMove("E7", "B4"); // move w bishop
     cout << endl;
