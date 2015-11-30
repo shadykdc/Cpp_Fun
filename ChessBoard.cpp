@@ -86,8 +86,15 @@ ChessBoard::ChessBoard()
 
 void ChessBoard::resetBoard()
 {
-	board.clear();
+	/* delete all of the pieces on the current board */
+	map<string,Piece *>::iterator i;
+	for (i = board.begin(); i != board.end(); i++) {
+		if (i->second != NULL) {
+			delete i->second;
+		}
+	}
 	
+	/* reset values */
 	cout  << "A new chess game is started!" << endl;
 	turn = "White";
 	opponent = "Black";
