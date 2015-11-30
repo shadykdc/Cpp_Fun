@@ -13,18 +13,10 @@ using namespace std;
 /* Questions:
 I'm creating a new board in every move file... maybe consider having a pointer to the board in each Piece.
 	
-How do I delete one piece?
-Is my clear deleting my pieces? No.
-Deconstructors?
-	
 Is Piece an abstract class? I don't think so...
 	
-Should be able to declare a move function for Piece that can create variables (soruce and destination square) either in the attributes or in the function, I'm still not sure, and then that function will call the special functions for the individual pieces.  Then we don't have to pass a ton of stuff into 6 different functions.
-
-Can I have a flag to turn off cout when checking for check in my move() func?
-	
 	To Do:
-	--pass board as reference / get rid of board.clear()'s
+	--pass board as reference
 	--helper functions
 */
 
