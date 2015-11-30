@@ -212,7 +212,7 @@ bool ChessBoard::submitMove(string source_square, string destination_square)
 			cout << destination_square;
 			if (piecePtr != NULL) {
 				cout << " taking " << opponent << "'s ";
-				cout << board[destination_square]->get_name();
+				cout << piecePtr->get_name();
 				delete piecePtr;
 			}
 			cout << endl;
