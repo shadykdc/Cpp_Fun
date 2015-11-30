@@ -84,7 +84,7 @@ bool King::move(string source_square,string destination_square,ChessBoard *cb, b
 	int file_dest = destination_square[0] - 64;
 	
 	/* return false if the king is moving more than one space */
-	if (abs(rank_src - rank_dest > 1) || abs(file_src - file_dest > 1)) {
+	if (abs(rank_src - rank_dest) > 1 || abs(file_src - file_dest) > 1) {
 		if (msg == true) {
 			cout << cb->get_turn() << "'s ";
 			cout << board[source_square]->get_name() << " cannot move";
