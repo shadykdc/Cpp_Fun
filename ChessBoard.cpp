@@ -91,8 +91,8 @@ ChessBoard::~ChessBoard()
 	for (i = board.begin(); i != board.end(); i++) {
 		if (i->second != NULL) {
 			delete i->second;
-			board.erase(i->first);
 		}
+		board.erase(i->first);
 	}
 }
 

@@ -24,10 +24,8 @@ Should be able to declare a move function for Piece that can create variables (s
 Can I have a flag to turn off cout when checking for check in my move() func?
 	
 	To Do:
-	--destructors
-	--pass board as reference
+	--pass board as reference / get rid of board.clear()'s
 	--helper functions
-	--get rid of board.clear()'s
 */
 
 int main() {

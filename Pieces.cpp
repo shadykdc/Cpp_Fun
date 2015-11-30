@@ -80,10 +80,8 @@ bool King::move(string source_square,string destination_square,ChessBoard *cb, b
 			cout << board[source_square]->get_name() << " cannot move";
 			cout << " to " << destination_square << "!" << endl;
 		}
-		board.clear();
 		return false;
 	}
-	board.clear();
 	return true;
 }
 
@@ -125,7 +123,6 @@ bool Queen::move(string source_square,string destination_square,ChessBoard *cb, 
 					cout << board[source_square]->get_name() << " cannot move";
 					cout << " to " << destination_square << "!" << endl;
 				}
-				board.clear();
 				return false;
 			}
 			lesser_file++;
@@ -145,7 +142,6 @@ bool Queen::move(string source_square,string destination_square,ChessBoard *cb, 
 					cout << board[source_square]->get_name() << " cannot move";
 					cout << " to " << destination_square << "!" << endl;
 				}
-				board.clear();
 				return false;
 			}
 			lesser_rank++;
@@ -170,7 +166,6 @@ bool Queen::move(string source_square,string destination_square,ChessBoard *cb, 
 					cout << board[source_square]->get_name() << " cannot move";
 					cout << " to " << destination_square << "!" << endl;
 				}
-				board.clear();
 				return false;
 			}
 			lesser_rank++;
@@ -189,7 +184,6 @@ bool Queen::move(string source_square,string destination_square,ChessBoard *cb, 
 					cout << board[source_square]->get_name() << " cannot move";
 					cout << " to " << destination_square << "!" << endl;
 				}
-				board.clear();
 				return false;
 			}
 			lesser_rank++;
@@ -203,10 +197,8 @@ bool Queen::move(string source_square,string destination_square,ChessBoard *cb, 
 			cout << board[source_square]->get_name() << " cannot move";
 			cout << " to " << destination_square << "!" << endl;
 		}
-		board.clear();
 		return false;
 	}
-	board.clear();
 	return true;
 }
 
@@ -247,7 +239,6 @@ bool Rook::move(string source_square,string destination_square,ChessBoard *cb, b
 					cout << board[source_square]->get_name() << " cannot move";
 					cout << " to " << destination_square << "!" << endl;
 				}
-				board.clear();
 				return false;
 			}
 			lesser_file++;
@@ -268,7 +259,6 @@ bool Rook::move(string source_square,string destination_square,ChessBoard *cb, b
 					cout << board[source_square]->get_name() << " cannot move";
 					cout << " to " << destination_square << "!" << endl;
 				}
-				board.clear();
 				return false;
 			}
 			lesser_rank++;
@@ -282,10 +272,8 @@ bool Rook::move(string source_square,string destination_square,ChessBoard *cb, b
 			cout << board[source_square]->get_name() << " cannot move";
 			cout << " to " << destination_square << "!" << endl;
 		}
-		board.clear();
 		return false;
 	}
-	board.clear();
 	return true;
 }
 
@@ -319,10 +307,8 @@ bool Knight::move(string source_square,string destination_square,ChessBoard *cb,
 			cout << board[source_square]->get_name() << " cannot move to ";
 			cout << destination_square << "!" << endl;
 		}
-		board.clear();
 		return false;
 	}
-	board.clear();
 	return true;
 }
 
@@ -355,7 +341,6 @@ bool Bishop::move(string source_square,string destination_square,ChessBoard *cb,
 			cout << board[source_square]->get_name() << " cannot move to ";
 			cout << destination_square << "!" << endl;
 		}
-		board.clear();
 		return false;
 	}
 	
@@ -377,7 +362,6 @@ bool Bishop::move(string source_square,string destination_square,ChessBoard *cb,
 				cout << board[source_square]->get_name() << " cannot move";
 				cout << " to " << destination_square << "!" << endl;
 			}
-			board.clear();
 			return false;
 		}
 		lesser_rank++;
@@ -396,13 +380,11 @@ bool Bishop::move(string source_square,string destination_square,ChessBoard *cb,
 				cout << board[source_square]->get_name() << " cannot move";
 				cout << " to " << destination_square << "!" << endl;
 			}
-			board.clear();
 			return false;
 		}
 		lesser_rank++;
 		greater_file--;
 	}
-	board.clear();
 	return true;
 }
 
@@ -435,7 +417,6 @@ bool Pawn::move(string source_square, string destination_square, ChessBoard *cb,
 			cout << board[source_square]->get_name() << " cannot move to ";
 			cout << destination_square << "!" << endl;
 		}
-		board.clear();
 		return false;
 	}
 	
@@ -454,7 +435,6 @@ bool Pawn::move(string source_square, string destination_square, ChessBoard *cb,
 	((rank_src+1) == rank_dest) &&
 	file_src == file_dest &&
 	board[source_square]->get_color() == 'w') {
-		board.clear();
 		return true;
 	}
 	
@@ -462,7 +442,6 @@ bool Pawn::move(string source_square, string destination_square, ChessBoard *cb,
 	((rank_src-1) == rank_dest) &&
 	file_src == file_dest &&
 	board[source_square]->get_color() == 'b') {
-		board.clear();
 		return true;
 	}
 	
@@ -474,7 +453,6 @@ bool Pawn::move(string source_square, string destination_square, ChessBoard *cb,
 	rank_src == 2 &&
 	board[destination_square] == NULL &&
 	board[source_square]->get_color() == 'w') {
-		board.clear();
 		return true;
 	}
 	
@@ -484,7 +462,6 @@ bool Pawn::move(string source_square, string destination_square, ChessBoard *cb,
 	rank_src == 7 &&
 	board[destination_square] == NULL &&
 	board[source_square]->get_color() == 'b') {
-		board.clear();
 		return true;
 	}
 	
@@ -494,7 +471,6 @@ bool Pawn::move(string source_square, string destination_square, ChessBoard *cb,
 	board[destination_square] != NULL &&
 	board[source_square]->get_color() == 'w' &&
 	board[destination_square]->get_color() == 'b') {
-		board.clear();
 		return true;
 	}
 	
@@ -503,14 +479,12 @@ bool Pawn::move(string source_square, string destination_square, ChessBoard *cb,
 	board[destination_square] != NULL &&
 	board[source_square]->get_color() == 'b' &&
 	board[destination_square]->get_color() == 'w') {
-		board.clear();
 		return true;
 	}
 	if (msg == true) {
 		cout << cb->get_turn() << "'s " << board[source_square]->get_name();
 		cout << " cannot move to " << destination_square << "!" << endl;
 	}
-	board.clear();
 	return false;
 }
 
