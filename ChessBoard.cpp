@@ -84,6 +84,18 @@ ChessBoard::ChessBoard()
 	board["H6"] = NULL;
 }
 
+ChessBoard::~ChessBoard()
+{
+	/* delete all of the pieces on the current board */
+	map<string,Piece *>::iterator i;
+	for (i = board.begin(); i != board.end(); i++) {
+		if (i->second != NULL) {
+			delete i->second;
+			board.erase(i->first);
+		}
+	}
+}
+
 void ChessBoard::resetBoard()
 {
 	/* delete all of the pieces on the current board */

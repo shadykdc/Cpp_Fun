@@ -17,6 +17,9 @@ public:
 	ChessBoard();
 	/*	initializer */
 	
+	~ChessBoard();
+	/*	deconstructor */
+	
 	void resetBoard();
 	/*	resets the chess board to the start of a game */
 	
