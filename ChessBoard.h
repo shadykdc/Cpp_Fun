@@ -1,7 +1,6 @@
 // chess: ChessBoard.h
 #ifndef CHESSBOARD_H
 #define CHESSBOARD_H
-
 #include <iostream>
 #include <string>
 #include <map>
@@ -38,13 +37,13 @@ public:
 	/* 	returns the board */
 	
 	bool check_stalemate(std::string player);
-	/*	returns true if the player (Black or White) is in stalemate */
+	/*	returns true if the player ("Black" or "White") is in stalemate */
 	
 	bool check_check(std::string player);
-	/*	returns true if the player (Black or White) is in check */
+	/*	returns true if the player ("Black" or "White") is in check */
 	
 	bool check_checkmate(std::string player);
-	/*	returns true if the player (Black or White) is in checkmate */
+	/*	returns true if the player ("Black" or "White") is in checkmate */
 };
 
 #endif

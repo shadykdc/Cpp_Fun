@@ -6,51 +6,41 @@
 
 using namespace std;
 
-/*Piece::Piece(char _color)
-{
-	color = _color;
-	name = "Piece";
-} */
+Piece::Piece(char _color) : color(_color){ }
 
 Piece::~Piece() { }
 
-King::King(char _color) {
-	color = _color;
+King::King(char _color) : Piece(_color) {
 	name = "King";
 }
 
 King::~King() { }
 
-Queen::Queen(char _color) {
-	color = _color;
+Queen::Queen(char _color) : Piece(_color) {
 	name = "Queen";
 }
 
 Queen::~Queen() { }
 
-Rook::Rook(char _color) {
-	color = _color;
+Rook::Rook(char _color) : Piece(_color) {
 	name = "Rook";
 }
 
 Rook::~Rook() { }
 
-Knight::Knight(char _color) {
-	color = _color;
+Knight::Knight(char _color) : Piece(_color) {
 	name = "Knight";
 }
 
 Knight::~Knight() { }
 
-Bishop::Bishop(char _color) {
-	color = _color;
+Bishop::Bishop(char _color) : Piece(_color) {
 	name = "Bishop";
 }
 
 Bishop::~Bishop() { }
 
-Pawn::Pawn(char _color) {
-	color = _color;
+Pawn::Pawn(char _color) : Piece(_color) {
 	name = "Pawn";
 }
 

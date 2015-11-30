@@ -13,7 +13,7 @@ protected:
 	char color;
 	string name;
 public:
-	//Piece(char _color);
+	Piece(char _color);
 	/*	constructor	*/
 	
 	virtual ~Piece();
