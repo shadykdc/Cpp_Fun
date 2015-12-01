@@ -10,6 +10,14 @@ Piece::Piece(char _color) : color(_color){ }
 
 Piece::~Piece() { }
 
+char Piece::get_color() {
+	return color;
+}
+
+string Piece::get_name() {
+	return name;
+}
+
 King::King(char _color) : Piece(_color) {
 	name = "King";
 }
@@ -46,14 +54,9 @@ Pawn::Pawn(char _color) : Piece(_color) {
 
 Pawn::~Pawn() { }
 
-bool Piece::move(string source_square,string destination_square,ChessBoard *cb, bool msg)
-{
-	return true;
-}
-
 bool King::move(string source_square,string destination_square,ChessBoard *cb, bool msg)
 {
-	map<string, Piece *> board = cb->get_board();
+	map<string, Piece *> &board = cb->get_board();
 	
 	/*	check if there is a piece of the same color at destination_square */
 	if (board[destination_square] != NULL &&
@@ -87,7 +90,7 @@ bool King::move(string source_square,string destination_square,ChessBoard *cb, b
 
 bool Queen::move(string source_square,string destination_square,ChessBoard *cb, bool msg)
 {
-	map<string, Piece *> board = cb->get_board();
+	map<string, Piece *> &board = cb->get_board();
 	
 	/*	check if there is a piece of the same color at destination_square */
 	if (board[destination_square] != NULL &&
@@ -204,7 +207,7 @@ bool Queen::move(string source_square,string destination_square,ChessBoard *cb, 
 
 bool Rook::move(string source_square,string destination_square,ChessBoard *cb, bool msg)
 {
-	map<string, Piece *> board = cb->get_board();
+	map<string, Piece *> &board = cb->get_board();
 	
 	/*	check if there is a piece of the same color at destination_square */
 	if (board[destination_square] != NULL &&
@@ -279,7 +282,7 @@ bool Rook::move(string source_square,string destination_square,ChessBoard *cb, b
 
 bool Knight::move(string source_square,string destination_square,ChessBoard *cb, bool msg)
 {
-	map<string, Piece *> board = cb->get_board();
+	map<string, Piece *> &board = cb->get_board();
 	
 	/*	check if there is a piece of the same color at destination_square */
 	if (board[destination_square] != NULL &&
@@ -314,7 +317,7 @@ bool Knight::move(string source_square,string destination_square,ChessBoard *cb,
 
 bool Bishop::move(string source_square,string destination_square,ChessBoard *cb, bool msg)
 {
-	map<string, Piece *> board = cb->get_board();
+	map<string, Piece *> &board = cb->get_board();
 	
 	/*	check if there is a piece of the same color at destination_square */
 	if (board[destination_square] != NULL &&
@@ -390,7 +393,7 @@ bool Bishop::move(string source_square,string destination_square,ChessBoard *cb,
 
 bool Pawn::move(string source_square, string destination_square, ChessBoard *cb, bool msg)
 {
-	map<string, Piece *> board = cb->get_board();
+	map<string, Piece *> &board = cb->get_board();
 	
 	/*	check if there is a piece of the same color at destination_square */
 	if (board[destination_square] != NULL &&
@@ -486,14 +489,4 @@ bool Pawn::move(string source_square, string destination_square, ChessBoard *cb,
 		cout << " cannot move to " << destination_square << "!" << endl;
 	}
 	return false;
-}
-
-char Piece::get_color()
-{
-	return color;
-}
-
-string Piece::get_name()
-{
-	return name;
 }

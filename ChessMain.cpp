@@ -10,16 +10,6 @@
 
 using namespace std;
 
-/* Questions:
-I'm creating a new board in every move file... maybe consider having a pointer to the board in each Piece.
-	
-Is Piece an abstract class? I don't think so...
-	
-	To Do:
-	--pass board as reference
-	--helper functions
-*/
-
 int main() {
 
 	cout << "============================" << endl;

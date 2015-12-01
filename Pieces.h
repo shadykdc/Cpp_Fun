@@ -20,8 +20,9 @@ public:
 	/*	destructor	*/
 	
 	virtual bool move(string source_square, string destination_square,
-	ChessBoard *cb, bool msg);
-	/* 	attempts to move a piece to a position */
+	ChessBoard *cb, bool msg)=0;
+	/* 	pure virtual function;
+		subclass versions return true if the move is valid */
 	
 	std::string get_name();
 	/*	returns the name of the piece (Bishop, Rook, etc.) */
@@ -38,7 +39,7 @@ public:
 	
 	bool move(string source_square, string destination_square, ChessBoard *cb,
 	bool msg);
-	/*	returns true if the king can move to position
+	/*	returns true if the king at source can move to destination
 		returns false if:
 			there is a piece of the same color in the destination square
 			that position is not adjacent to the king's current position
@@ -55,7 +56,7 @@ public:
 	
 	bool move(string source_square, string destination_square, ChessBoard *cb,
 	bool msg);
-	/*	returns true if the queen can move to position
+	/*	returns true if the queen at source can move to destination
 		returns false if:
 			there is a piece of the same color in the destination square
 			that position is not along the queen's diagonals, vert, or horiz
@@ -73,7 +74,7 @@ public:
 	
 	bool move(string source_square, string destination_square, ChessBoard *cb,
 	bool msg);
-	/*	returns true if the rook can move to position
+	/*	returns true if the rook at source can move to destination
 		returns false if:
 			there is a piece of the same color in the destination square
 			moving the rook would result in putting the king in check
@@ -91,7 +92,7 @@ public:
 	
 	bool move(string source_square, string destination_square, ChessBoard *cb,
 	bool msg);
-	/*	returns true if the knight can move to position
+	/*	returns true if the knight at source can move to destination
 		returns false if:
 			there is a piece of the same color in the destination square
 			moving the knight would result in putting the king in check
@@ -108,7 +109,7 @@ public:
 	
 	bool move(string source_square, string destination_square, ChessBoard *cb,
 	bool msg);
-	/*	returns true if the bishop can move to position
+	/*	returns true if the bishop at source can move to destination
 		returns false if:
 			there is a piece of the same color in the destination square
 			moving the bishop would result in putting the king in check
@@ -128,7 +129,7 @@ public:
 	
 	bool move(string source_square, string destination_square, ChessBoard *cb,
 	bool msg);
-	/*	returns true if the pawn can move to position
+	/*	returns true if the pawn at source can move to destination
 		returns false if:
 			there is a piece of the same color in the destination square
 			moving the pawn would result in putting the king in check
