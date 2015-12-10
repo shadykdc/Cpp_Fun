@@ -2,7 +2,13 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include "Pieces.h"
+#include "King.h"
+#include "Queen.h"
+#include "Rook.h"
+#include "Bishop.h"
+#include "Knight.h"
+#include "Pawn.h"
+#include "Piece.h"
 #include "ChessBoard.h"
 
 using namespace std;

@@ -6,7 +6,6 @@
 #include <iostream>
 #include <string>
 #include "ChessBoard.h"
-#include "Pieces.h"
 
 using namespace std;
 
