@@ -20,8 +20,8 @@ public:
 		returns false if:
 			there is a piece of the same color in the destination square
 			moving the pawn would result in putting the king in check
-			that position is infront of the pawn and occupied
-			that position is to the front left/right and occupied by same color
+			that position is in front of the pawn and occupied
+			that position is to the front left/right and not an opponent
 			that position is 2 spaces forward and the pawn has moved
 			that position is 2 spaces forward and occupied
 		if msg is true then it will output an error message if applicable
