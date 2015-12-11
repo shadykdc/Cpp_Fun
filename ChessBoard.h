@@ -5,13 +5,13 @@
 #include <string>
 #include <map>
 
-class Piece;
+class Piece; /* forward declaration */
 
 class ChessBoard
 {
 private:
-	std::string turn;
-	std::string opponent;
+	std::string turn;       /* "White" or "Black" */
+	std::string opponent;   /* "Black" or "White" */
 	std::map <std::string, Piece *> board;
 public:
 	ChessBoard();
@@ -31,8 +31,8 @@ public:
 		returns false if:
 			source or destination are not on the board
 			there is no piece at source
-			the correct player is making a move
-			destination is already filled by that player's piece
+			the wrong player is making a move
+			destination is already filled by current player's piece
 			the current player is putting themselves in check
 			the move is invalid according to Piece::move()
 		runs check_stalemate(), check_checkmate(), and check_check() at the
@@ -40,10 +40,10 @@ public:
 		is after a successful move */
 		
 	void change_turn();
-	/*	changes whose turn it is */
+	/*	flips turn (color) and opponent (color) */
 		
 	std::string get_turn();
-	/*	returns the color of the person whose turn it is */
+	/*	returns the color of the player whose turn it is */
 	
 	std::map <std::string, Piece *> &get_board();
 	/* 	returns a reference to the board */
