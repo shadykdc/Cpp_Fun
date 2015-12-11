@@ -18,7 +18,7 @@ public:
 		returns false if:
 			there is a piece of the same color in the destination square
 			moving the rook would result in putting the king in check
-			that position is not along the rook's vertical or horizontal
+			that position is not along the rook's rank or file
 			there is another piece between the rook and the position 
 		if msg is true then it will output an error message if applicable
 	*/
