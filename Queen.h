@@ -17,7 +17,7 @@ public:
 	/*	returns true if the queen at source can move to destination
 		returns false if:
 			there is a piece of the same color in the destination square
-			that position is not along the queen's diagonals, vert, or horiz
+			that position is not along the queen's diagonals, rank, or file
 			there is another piece between the queen and the position
 			
 		if msg is true then it will output an error message if applicable
