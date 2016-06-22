@@ -11,7 +11,7 @@ using namespace std;
 
 int main() {
 
-	cout << "============================" << endl;
+    cout << "============================" << endl;
     cout << "  Testing the Chess Engine  " << endl;
     cout << "============================" << endl;
     cout << endl;
@@ -31,8 +31,8 @@ int main() {
     cb.submitMove("F8", "B4");
     cout << endl;
     
-	/*cout << endl;
-   	cout << "============================" << endl;
+    /*cout << endl;
+    cout << "============================" << endl;
     cout << "        Katie's Tests       " << endl;
     cout << "============================" << endl;
     cout << endl;
